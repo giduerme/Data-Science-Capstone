@@ -35,6 +35,13 @@ PredictNextWord <- function(InputString) {
   InputStrLen <- length(InputStr);
   IsMatch <- FALSE
   
+  # Function for UniGram
+  if (InputStrLen > 0 & !IsMatch)  {
+    NextWordMatch <- UniFreqList$word[1];
+    MatchGram <- 1;
+    IsMatch <- TRUE;
+  }
+  
   # Function for BiGram
   if (InputStrLen >= 1 & !IsMatch)  {
     StrToSearch <- InputStr[InputStrLen]; 
@@ -47,22 +54,7 @@ PredictNextWord <- function(InputString) {
       IsMatch <- TRUE;
     }
   }
-  
-  # Function for UniGram
-  if (InputStrLen > 0 & !IsMatch)  {
-    NextWordMatch <- UniFreqList$word[1];
-    MatchGram <- 1;
-    IsMatch <- TRUE;
-  }
-  
-  if (InputStrLen > 0 & IsMatch) {
-    FinalResult <- data.frame(InputStr = InputString, PredictedWord = word(NextWordMatch, -1), MatchStr = NextWordMatch, GramType = MatchGram);
-    return(FinalResult);
-  } else {
-    FinalResult <- data.frame(InputStr = "", PredictedWord = "", MatchStr = "", GramType = "");
-    return(FinalResult);
-  } 
-  
+    
   # Function for TriGram
   if (InputStrLen >= 2 & !IsMatch)  {
     StrToSearch <- paste(InputStr[(InputStrLen-1):InputStrLen], collapse=" "); 
@@ -88,6 +80,14 @@ PredictNextWord <- function(InputString) {
       IsMatch <- TRUE;
     }
   }
+  
+  if (InputStrLen > 0 & IsMatch) {
+    FinalResult <- data.frame(InputStr = InputString, PredictedWord = word(NextWordMatch, -1), MatchStr = NextWordMatch, GramType = MatchGram);
+    return(FinalResult);
+  } else {
+    FinalResult <- data.frame(InputStr = "", PredictedWord = "", MatchStr = "", GramType = "");
+    return(FinalResult);
+  } 
   
 }
 
