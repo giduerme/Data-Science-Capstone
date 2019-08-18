@@ -1,0 +1,62 @@
+Data Science Capstone: Final Project Submission
+========================================================
+author: Gilbert Duerme
+date: August 18, 2019
+autosize: false
+
+Introduction
+========================================================
+
+This project was made in fulfillment of the course requirements in the Data Science Capstone course under Coursera. The course project was the continuation the previous milestone project which was a basic n-gram model that has been developed through the use of the 3 datasets that came from the English database folder provided by Coursera. From that milestone project, the next task was to create a model via a shiny interface and a presentation which will detail out the process of how the project was done. The points below were derived from Coursera which will be the guide for this project.
+
+1. A Shiny app that takes as input a phrase (multiple words) in a text box input and outputs a prediction of the next word.
+
+2. A slide deck consisting of no more than 5 slides created with R Studio Presenter pitching your algorithm and app as if you were presenting to your boss or an investor.
+
+
+Preliminary Steps: Creating N Grams
+========================================================
+The following steps below where done during the project milestone which was the preliminary requirement for this final project.
+
+- A data preparation was done which included the loading of the three provided datasets and show its statistics summary for a preliminary data exploration purposes.
+- A seed was set for the data sampling for reproducibility purposes. Right after, a sample rate of 0.03 was done to pave way to a shorter time of data processing as well as any other processes that will be done further that icludes these datasets.
+- The three samples were concatenated into one data sample and undergone data cleaning via corpus.
+- Then the n grams were created through tokenizing via the RWeka R package. The n grams created for the project was 4: unigram, bigram, trigram, and quadgram.
+
+
+```r
+summary(cars)
+```
+
+```
+     speed           dist       
+ Min.   : 4.0   Min.   :  2.00  
+ 1st Qu.:12.0   1st Qu.: 26.00  
+ Median :15.0   Median : 36.00  
+ Mean   :15.4   Mean   : 42.98  
+ 3rd Qu.:19.0   3rd Qu.: 56.00  
+ Max.   :25.0   Max.   :120.00  
+```
+
+Final Steps: Creating the Model with Shiny
+========================================================
+The following steps below where done during the final project which was the overall requirement for this course.
+
+- The created n grams from the previous project milestone were loaded to the working environment.
+- Right after the loading, a process was done in which the most frequent words were determined and saved via an Rds file so that it can be loaded in the server.R that will be used for the shiny app.
+- The functions were done via the server.R of the shiny app and finally the ui.R was designed to incorporate the functions created and make it presentable and easy to use for its users.
+
+What's the Next Word? App: Usability
+========================================================
+The following steps below will detail out on how the user can use the created app.
+
+- The user will enter words (up to 3 words) in the provided text box.
+- The app will assess the entered words by the user and suggest the next possible word after the word / series of words the user has entered.
+- The app will display the predicted word on the other text box.
+
+Documentation: Links on the Shiny App and Programming Documentation
+========================================================
+
+- Link to the Programming Documentation: https://github.com/giduerme/Data-Science-Capstone
+- Link to the Shiny App: https://giduerme.shinyapps.io/DataScienceCapstone/
+
